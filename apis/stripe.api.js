@@ -170,8 +170,9 @@ module.exports = {
 
       const invoiceCursor = listInvoices({
         customerId,
-        startTimestamp: Date.now() - 10000000,
-        endTimestamp: Date.now()
+        startTimestamp: new Date(startDate).getTime(),
+        endTimestamp: new Date(endDate).getTime(),
+        strategy: searchStrategy
       })
 
       // There's a better way of paying invoices using concurrency

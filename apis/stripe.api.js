@@ -163,7 +163,7 @@ module.exports = {
       const customerId = await getCustomerId(email)
 
       if (!customerId) {
-        res.status(422).send({
+        return res.status(422).send({
           error: `Email does not exist "${email}"`
         })
       }

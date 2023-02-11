@@ -51,7 +51,7 @@ yarn tunnel
 ```
 
 1. You will need your own Stripe account so make sure to create one then update `.env` with the new keys.
-2. Add the `xxx.ngrok.io/stripe/webhook` to [Stripe Webhooks](https://dashboard.stripe.com/test/webhooks/create?endpoint_location=hosted)
+2. Add the `xxx.ngrok.io/stripe/webhook` (where "xxx" is the url you get from running yarn tunnel) to [Stripe Webhooks](https://dashboard.stripe.com/test/webhooks/create?endpoint_location=hosted)
 3. In Stripe Webhooks choose all `Customer` events.
 4. You can open `http://127.0.0.1:4040/inspect/http` in a new tab to monitor any request
 5. Create a subscription using `/stripe/subscribe` (you should see a webhook request).

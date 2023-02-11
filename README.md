@@ -32,11 +32,11 @@ yarn dev
 
 All APIs are available [here](https://documenter.getpostman.com/view/3626031/2s935uFL5q). Here's my recommendation:
 
-1. Create subscription using `/stripe/subscribe`
-2. Get active Subscription using `/stripe/get-active-subscription`
-3. Generate random invoices `/stripe/generate-invoice` - generate multiple invoices with different amounts to keep track of them
-4. Pay invoices within 2 date ranges `/stripe/pay-invoices`
-5. Check webhook examples `/stripe/webhooks` - check Webhook Section
+1. Check Webhook Section
+2. Create subscription using `/stripe/subscribe`
+3. Get active Subscription using `/stripe/get-active-subscription`
+4. Generate random invoices `/stripe/generate-invoice` - generate multiple invoices with different amounts to keep track of them
+5. Pay invoices within 2 date ranges `/stripe/pay-invoices`
 6. Check tests using `yarn test`
 
 This way you can evaluate all test deliverables quickly.
@@ -50,7 +50,7 @@ yarn tunnel
 # [Ngrok] web interface http://127.0.0.1:4040/inspect/http
 ```
 
-1. You will need your own Stripe account so make sure to create one then update `.env` with the new keys
+1. You will need your own Stripe account so make sure to create one then update `.env` with the new keys.
 2. Add the `xxx.ngrok.io/stripe/webhook` to [Stripe Webhooks](https://dashboard.stripe.com/test/webhooks/create?endpoint_location=hosted)
 3. In Stripe Webhooks choose all `Customer` events.
 4. You can open `http://127.0.0.1:4040/inspect/http` in a new tab to monitor any request

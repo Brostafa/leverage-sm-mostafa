@@ -126,6 +126,7 @@ module.exports = {
    * Pay invoices in two date ranges
    * 
    * @param {Object} req 
+   * @param {String} req.body.email Customer email
    * @param {String} req.body.startDate Start Date
    * @param {String} req.body.endDate End Date
    * @param {String} req.body.searchStrategy 'created', 'due_date'

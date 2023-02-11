@@ -4,7 +4,7 @@
 const Stripe = require('stripe')
 const logger = require('./logger')
 
-if (!process.env.STRIPE_SK) {
+if (!process.env.STRIPE_SK || process.env.STRIPE_SK === 'sk_XXX') {
   logger.error('[Stripe] please define STRIPE_SK in .env')
   process.exit(1)
 }

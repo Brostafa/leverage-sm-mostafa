@@ -18,4 +18,10 @@ const schema = new mongoose.Schema({
   timestamps: true
 })
 
+// This is necessary to avoid model compilation errors in tests watch mode
+// see https://mongoosejs.com/docs/api/connection.html#connection_Connection-deleteModel
+if (mongoose.modelNames().includes(MODEL_NAME)) {
+  mongoose.deleteModel(MODEL_NAME)
+}
+
 module.exports = mongoose.model(MODEL_NAME, schema)

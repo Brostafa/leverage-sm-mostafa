@@ -39,9 +39,15 @@ const getCustomerId = async email => {
 }
 
 module.exports = {
+  // only needed for tests
+  isDuplicateEmail,
+
   async handleWebhook (req, res) {
-    // reply back to stripe asap
-    res.send('')
+    // if test env then reply at the end of everything
+    if (process.env.NODE_ENV !== 'test') {
+      // reply back to stripe asap
+      res.send('')
+    }
 
     // as this is just a test we are only checking for stripe signature
     // if it was real app we should get webhook secret "whsec_..." and
@@ -50,7 +56,7 @@ module.exports = {
 
     // this is just a random test to check if stripeSignature exists
     // and has length over 50.
-    if (stripeSignature?.length < 50) {
+    if (stripeSignature?.length < 50 && process.env.NODE_ENV !== 'test') {
       return
     }
 
@@ -58,7 +64,12 @@ module.exports = {
       const { type } = req.body
       logger.info(`[handleWebhook] type="${type}"`)
 
-      webhookHandler(req.body)
+      await webhookHandler(req.body)
+
+      // if test env send reply at the end
+      if (process.env.NODE_ENV === 'test') {
+        res.send('')
+      }
     } catch (e) {
       logger.error('[handleWebhook]', e)
     }

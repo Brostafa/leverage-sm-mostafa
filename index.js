@@ -25,4 +25,6 @@ app.post('/stripe/generate-invoice', stripeApis.generateInvoice)
 app.post('/stripe/pay-invoices', stripeApis.payInvoices)
 app.post('/stripe/webhook', stripeApis.handleWebhook)
 
-app.listen(PORT, () => logger.success(`[Server] Listening on http://localhost:${PORT}`))
+const server = app.listen(PORT, () => logger.success(`[Server] Listening on http://localhost:${PORT}`))
+
+module.exports = server

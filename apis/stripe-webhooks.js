@@ -45,8 +45,17 @@ const deleteCustomer = async payload => {
 
 const updateSubscription = async payload => {
   try {
-    const { id, plan, customer } = payload.data.object
-    const product = await getProduct(plan.product)
+    const {
+      id,
+      plan,
+      customer,
+      // only used in test env
+      __testProduct
+    } = payload.data.object
+
+    const product = process.env.NODE_ENV === 'test'
+      ? __testProduct
+      : await getProduct(plan.product)
 
     await Subscriptions.updateOne({
       customerId: customer
@@ -96,7 +105,7 @@ const webhookHandler = payload => {
   const method = webhookMap[type]
 
   if (method) {
-    method(payload)
+    return method(payload)
   }
 }
 
